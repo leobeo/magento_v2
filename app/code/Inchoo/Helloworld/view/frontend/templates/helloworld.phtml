@@ -1,0 +1,44 @@
+<h1><?php echo 'Hello '; ?></h1>
+<?php 
+$product=$block->getProductCollection();
+?>
+<div class="container">
+            <div class="content-slide-all">
+                <div class="content-title">
+                    <h3><?php echo "Deal khuyến mãi" ?></h3>    
+                </div>
+                <div class="content-slide" id="content-slide">
+<ul>
+<?php foreach ($product as $prod) :?>
+
+    <li style="float: left">
+                                            <div class="po-detail">
+                                                <div class="po-img">
+                                                    
+                                                    <?php  $base_url=$block->getBaseUrl();
+                                                            $productImageUrl = $block->getUrl('pub/media/catalog').'product'.$prod->getImage();?>
+                                                    <a href="<?php echo $productImageUrl ?>" />
+                                                    <img src="<?php echo $productImageUrl ?>" width="170" height="170"/>
+                                                </div>
+                                                <div class="po-title">
+                                                    <a href="<?php echo $prod->getUrlKey() ?>"><label><?php echo $prod->getName(); ?></label></a>
+                                                </div>
+                                                <div class="po-price">
+                                                    <p>  
+
+                                                        <?php if ($prod->getSpecialPrice()) { ?>
+                                                            <?php
+                                                            echo $prod->getSpecialPrice();
+                                                        } else {
+                                                            echo $prod->getPrice();
+                                                        }
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+<?php    endforeach;?>
+</ul>
+                </div>
+            </div>
+</div>
